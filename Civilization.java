@@ -60,7 +60,12 @@ public class Civilization {
                 happiness -= 3;
             }
             System.out.println(" You currently have: ");
-            System.out.printf("%20s %-3d\n%20s %-3.2f\n%20s %-3.2f\n%20s %-3d\n%20s %-3d\n%20s %-3d", "Attacks:", attacks, "Gold:", gold, "Resources:", resources, "Happiness:", happiness, "Military Units:", militaryUnits, "Technology Points:", techPoints);
+            System.out.printf("%20s %-3d\n%20s %-3.2f\n%20s %-3.2f\n%20s "
+                              + "%-3d\n%20s %-3d\n%20s %-3d", "Attacks"
+                              + ":", attacks, "Gold:", gold, "Resources"
+                              + ":", resources, "Happiness:", happiness, "M"
+                              + "ilitary Units:", militaryUnits, "Techn"
+                              + "ology Points:", techPoints);
             System.out.println("\n");
 
             System.out.println("You have the following cities:");
@@ -72,7 +77,8 @@ public class Civilization {
             if (attacks == 1) {
                 System.out.println("You have attacked 1 cities");
             } else {
-                System.out.println("You have attacked " + attacks + " cities.\n");
+                System.out.println("You have attacked " + attacks + " cities"
+                                    + ".\n");
             }
             //choose action
             System.out.print("What is your action?\n");
@@ -90,7 +96,8 @@ public class Civilization {
             if (choice == 1) {
                 if (gold >= 15.5) {
                     if  (c == 0) {
-                        System.out.println("You reached your limit of 5 cities.");
+                        System.out.println("You reached your limit of 5 "
+                                            + "cities.");
                         System.out.println("\nStart new turn.\n");
                     } else if  (c > 0) {
                         System.out.println("Your current list of cities: ");
@@ -108,7 +115,8 @@ public class Civilization {
                     }
                     gold -= 15.5;
                 } else if (gold < 15.5) {
-                    System.out.println("You do not have enough gold to settle in a city.");
+                    System.out.println("You do not have enough gold to settle"
+                                        + "in a city.");
                     System.out.println("\nStart new turn.\n");
                 }
 
@@ -116,13 +124,14 @@ public class Civilization {
 
             } else if (choice == 2) {
                 if (cities.length - c > 1) {
-                    System.out.println("Which city would you like to demolish? ");
+                    System.out.println("Which city would you like to "
+                                        + "demolish? ");
                     for (int i = 0; i < (cities.length - c); i++) {
                         System.out.println((i + 1) + ": " + cities[i]);
                     }
                     int demChoice = userChoice.nextInt();
                     cities[demChoice - 1] = null;
-                    if (demChoice != 5 && cities[demChoice - 1] == null && cities[demChoice] != null) {
+                    if (demChoice != 5 && cities[demChoice] != null) {
                         for (int i = demChoice - 1; i < cities.length - (c + 1); i++) {
                             cities[i] = cities[i + 1];
                         }
