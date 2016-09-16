@@ -16,7 +16,10 @@ public class Civilization {
 
         //Prompt the user to input their civilization
         System.out.println("Which civilization do you want to lead?");
-        System.out.println("1: American\n2: Zulu\n3: English\n4: Chinese");
+        System.out.println("1: American (George Washington)"
+							+ "\n2: Zulu (Shaka)"
+							+ "\n3: English (Queen Elizabeth I)"
+							+ "\n4: Chinese (Wu Zeitan)");
 
         Scanner userCiv = new Scanner(System.in);
         int civilization = userCiv.nextInt();
