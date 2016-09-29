@@ -1,10 +1,9 @@
 public class Settlement {
-    private Building[] buildings;
+    private Building[] buildings = new Building[2];
     private String name;
     private int size;
 
-    public Settlement(String n, Building... b) {
-        buildings = b;
+    public Settlement(String n) {
         name = n;
         size = buildings.length;
     }
@@ -32,11 +31,13 @@ public class Settlement {
         if (cost < allottedMoney
             && population.getCivilians() > workersRequired) {
             if (buildings.length > size) {
+                population.canWork(workersRequired);
                 buildings[size] = new Building(cost, workersRequired);
                 size++;
             } else {
                 expandSettlement();
                 buildings[size] = new Building(cost, workersRequired);
+                population.canWork(workersRequired);
                 size++;
             }
             return true;

@@ -62,7 +62,6 @@ public class Egypt {
     public boolean buildPyramid(Settlement s) {
         if (s.build(treasury.getCoins(), population, 500, 100)) {
             treasury.spend(500);
-            population.canWork(100);
             technology.increaseExperience(10);
             return true;
         }

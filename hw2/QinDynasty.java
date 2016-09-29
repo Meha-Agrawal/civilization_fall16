@@ -48,7 +48,7 @@ public class QinDynasty {
     }
 
     public boolean settle(Settlement settlement) {
-        if (settlementSize <= 10) {
+        if (settlementSize <= 9) {
             settlements[settlementSize] = settlement;
             settlementSize++;
             return true;
@@ -60,7 +60,6 @@ public class QinDynasty {
     public boolean buildWall(Settlement s) {
         if (s.build(treasury.getCoins(), population, 1000, 100)) {
             treasury.spend(1000);
-            population.canWork(100);
             technology.increaseExperience(10);
             return true;
         }
@@ -68,8 +67,7 @@ public class QinDynasty {
     }
     public boolean buildHouse(Settlement s) {
         if (s.build(treasury.getCoins(), population, 30, 8)) {
-            treasury.spend(1000);
-            population.canWork(100);
+            treasury.spend(30);
             technology.increaseExperience(10);
             return true;
         }
@@ -77,7 +75,9 @@ public class QinDynasty {
     }
     public void establishLegalism() {
         population.decreaseHappiness(20);
-        if (population.getHappiness() < 0) {
+        if (population.getHappiness() > 0) {
+            technology.philosophize();
+        } else {
             population.increaseHappiness(20);
         }
     }

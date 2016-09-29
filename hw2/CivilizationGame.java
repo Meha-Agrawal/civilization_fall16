@@ -161,7 +161,7 @@ public class CivilizationGame {
                 egypt.getPopulation().setWarriors(
                         egypt.getPopulation().getWarriors()
                     - warriorsLost);
-                egypt.getStrategy().battle();
+                egypt.getStrategy().siege();
                 result = warriorsLost;
             }
             System.out.print("You've chosen siege!!!");
@@ -411,7 +411,7 @@ public class CivilizationGame {
                 qin.getPopulation().setWarriors(
                         qin.getPopulation().getWarriors()
                     - warriorsLost);
-                qin.getStrategy().battle();
+                qin.getStrategy().siege();
                 result = warriorsLost;
             }
             System.out.print("You've chosen siege!!!");
@@ -592,7 +592,7 @@ public class CivilizationGame {
                 rome.getPopulation().setWarriors(
                         rome.getPopulation().getWarriors()
                     - warriorsLost);
-                rome.getStrategy().battle();
+                rome.getStrategy().siege();
                 result = warriorsLost;
             }
             System.out.print("You've chosen siege!!!");
