@@ -2,7 +2,14 @@ public class Technology {
     private int understanding = 0;
     private boolean foundMeaningOfLife = false;
     private int experienceLevel = 0;
-    private boolean builtWonderOfTheWorld = true;
+    private boolean builtWonderOfTheWorld = false;
+
+    public int getUnderstanding() {
+        return understanding;
+    }
+    public int getBuildExperience() {
+        return experienceLevel;
+    }
 
     public void philosophize() {
         understanding += 25;
@@ -25,6 +32,6 @@ public class Technology {
     }
 
     public boolean hasTechnologyWin() {
-        return foundMeaningOfLife && builtWonderOfTheWorld;
+        return foundMeaningOfLife || builtWonderOfTheWorld;
     }
 }

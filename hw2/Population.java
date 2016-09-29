@@ -6,11 +6,24 @@ public class Population {
     private int civilians = 50;
     private int happiness = 200;
 
+    public int getCivilians() {
+        return civilians;
+    }
+    public int getWarriors() {
+        return warriors;
+    }
+    public int getHappiness() {
+        return happiness;
+    }
+    public void setWarriors(int w) {
+        warriors = w;
+    }
+
     public void increaseHappiness(int inc) {
         happiness += inc;
     }
     public void decreaseHappiness(int dec) {
-        happiness += dec;
+        happiness -= dec;
     }
     public boolean canWork(int num) {
         if (civilians >= num) {
@@ -60,7 +73,4 @@ public class Population {
         }
     }
 
-    public int getCivilians() {
-        return civilians;
-    }
 }

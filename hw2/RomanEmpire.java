@@ -1,22 +1,22 @@
-public class Egypt {
+public class RomanEmpire {
     private Population population;
     private Treasury treasury;
     private CoalMine coalMine;
     private River river;
     private Technology technology;
     private Strategy strategy;
-    private Desert desert;
+    private Hills hills;
     private Settlement[] settlements = new Settlement[10];
     private int settlementSize = 0;
 
-    public Egypt() {
+    public RomanEmpire() {
         population = new Population();
         treasury = new Treasury();
         coalMine = new CoalMine();
-        river = new River("Nile");
+        river = new River("Euphrates");
         technology = new Technology();
         strategy = new Strategy();
-        desert = new Desert();
+        hills = new Hills();
     }
 
     public Population getPopulation() {
@@ -37,14 +37,14 @@ public class Egypt {
     public Strategy getStrategy() {
         return strategy;
     }
-    public Settlement[] getSettlements() {
-        return settlements;
-    }
     public int getNumSettlements() {
         return settlementSize;
     }
-    public Desert getDesert() {
-        return desert;
+    public Settlement[] getSettlements() {
+        return settlements;
+    }
+    public Hills getHills() {
+        return hills;
     }
 
     public boolean settle(Settlement settlement) {
@@ -57,20 +57,40 @@ public class Egypt {
         }
     }
 
-
-
-    public boolean buildPyramid(Settlement s) {
-        if (s.build(treasury.getCoins(), population, 500, 100)) {
-            treasury.spend(500);
-            population.canWork(100);
+    public boolean buildAqueduct(Settlement s) {
+        if (s.build(treasury.getCoins(), population, 250, 130)) {
+            treasury.spend(250);
+            population.canWork(130);
             technology.increaseExperience(10);
             return true;
         }
         return false;
     }
-    public void practiceHieroglyphics() {
-        technology.improveWriting();
-        population.increaseHappiness(10);
+
+    public boolean buildBathHouse(Settlement s) {
+        if (s.build(treasury.getCoins(), population, 110, 20)) {
+            treasury.spend(110);
+            population.canWork(20);
+            technology.increaseExperience(10);
+            return true;
+        }
+        return false;
     }
 
+    public boolean buildVilla(Settlement s) {
+        if (s.build(treasury.getCoins(), population, 80, 15)) {
+            treasury.spend(80);
+            population.canWork(15);
+            technology.increaseExperience(5);
+            return true;
+        }
+        return false;
+    }
+
+    public void studyPhilosophy() {
+        population.decreaseHappiness(10);
+        if (population.getHappiness() < 0) {
+            population.increaseHappiness(10);
+        }
+    }
 }

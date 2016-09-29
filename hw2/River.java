@@ -12,6 +12,9 @@ public class River {
             size++;
         }
     }
+    public String getName() {
+        return name;
+    }
     public Fish getFish() {
         if (size != 0) {
             Fish tempFish = fish[size - 1];

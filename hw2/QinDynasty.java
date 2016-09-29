@@ -1,22 +1,22 @@
-public class Egypt {
+public class QinDynasty {
     private Population population;
     private Treasury treasury;
     private CoalMine coalMine;
     private River river;
     private Technology technology;
     private Strategy strategy;
-    private Desert desert;
+    private Hills hills;
     private Settlement[] settlements = new Settlement[10];
     private int settlementSize = 0;
 
-    public Egypt() {
+    public QinDynasty() {
         population = new Population();
         treasury = new Treasury();
         coalMine = new CoalMine();
-        river = new River("Nile");
+        river = new River("Yangtze");
         technology = new Technology();
         strategy = new Strategy();
-        desert = new Desert();
+        hills = new Hills();
     }
 
     public Population getPopulation() {
@@ -43,8 +43,8 @@ public class Egypt {
     public int getNumSettlements() {
         return settlementSize;
     }
-    public Desert getDesert() {
-        return desert;
+    public Hills getHills() {
+        return hills;
     }
 
     public boolean settle(Settlement settlement) {
@@ -57,20 +57,30 @@ public class Egypt {
         }
     }
 
-
-
-    public boolean buildPyramid(Settlement s) {
-        if (s.build(treasury.getCoins(), population, 500, 100)) {
-            treasury.spend(500);
+    public boolean buildWall(Settlement s) {
+        if (s.build(treasury.getCoins(), population, 1000, 100)) {
+            treasury.spend(1000);
             population.canWork(100);
             technology.increaseExperience(10);
             return true;
         }
         return false;
     }
-    public void practiceHieroglyphics() {
-        technology.improveWriting();
-        population.increaseHappiness(10);
+    public boolean buildHouse(Settlement s) {
+        if (s.build(treasury.getCoins(), population, 30, 8)) {
+            treasury.spend(1000);
+            population.canWork(100);
+            technology.increaseExperience(10);
+            return true;
+        }
+        return false;
     }
+    public void establishLegalism() {
+        population.decreaseHappiness(20);
+        if (population.getHappiness() < 0) {
+            population.increaseHappiness(20);
+        }
+    }
+
 
 }
