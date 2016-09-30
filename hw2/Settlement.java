@@ -29,17 +29,10 @@ public class Settlement {
     public boolean build(int allottedMoney, Population population,
         int cost, int workersRequired) {
         if (cost < allottedMoney
-            && population.getCivilians() > workersRequired) {
-            if (buildings.length > size) {
-                population.canWork(workersRequired);
-                buildings[size] = new Building(cost, workersRequired);
-                size++;
-            } else {
-                expandSettlement();
-                buildings[size] = new Building(cost, workersRequired);
-                population.canWork(workersRequired);
-                size++;
-            }
+            && population.getCivilians() >= workersRequired) {
+            population.canWork(workersRequired);
+            Building tempBuilding = new Building(cost, workersRequired);
+            addBuilding(tempBuilding);
             return true;
         }
         return false;

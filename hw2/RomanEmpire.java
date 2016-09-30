@@ -48,7 +48,7 @@ public class RomanEmpire {
     }
 
     public boolean settle(Settlement settlement) {
-        if (settlementSize <= 10) {
+        if (settlementSize <= 9) {
             settlements[settlementSize] = settlement;
             settlementSize++;
             return true;
@@ -58,7 +58,7 @@ public class RomanEmpire {
     }
 
     public boolean buildAqueduct(Settlement s) {
-        if (s.build(treasury.getCoins(), population, 250, 130)) {
+        if (s.build(treasury.getCoins(), population, 250, 30)) {
             treasury.spend(250);
             technology.increaseExperience(10);
             return true;
@@ -86,7 +86,9 @@ public class RomanEmpire {
 
     public void studyPhilosophy() {
         population.decreaseHappiness(10);
-        if (population.getHappiness() < 0) {
+        if (population.getHappiness() > 0) {
+            technology.philosophize();
+        } else {
             population.increaseHappiness(10);
         }
     }
