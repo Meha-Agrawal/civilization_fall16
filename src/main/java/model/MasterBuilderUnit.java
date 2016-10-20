@@ -22,10 +22,6 @@ public class MasterBuilderUnit extends Unit implements Convertable {
 
     @Override
     public boolean canConvert(TileType type) {
-        if(type == TileType.PLAINS) {
-            return true;
-        } else {
-            return false;
-        }
+        return type == TileType.PLAINS;
     }
 }

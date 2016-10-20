@@ -17,7 +17,7 @@ class Map {
         }
     }
 
-    public TerrainTile (int r, int c) {
+    public TerrainTile getTile(int r, int c) {
         return map[r][c];
     }
 
