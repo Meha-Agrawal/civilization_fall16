@@ -1,16 +1,19 @@
 package model;
 
-import java.util.Random;
-
 class RomanEmpire extends Civilization{
+    private Hills hills = new Hills();
 
     public RomanEmpire() {
         super("Roman");
     }
 
+    public hills getHills() {
+        return hills;
+    }
+
     @Override
     public String explore() {
-        int resourcesFound = getHills().mineCoal();
+        int resourcesFound = hills.mineCoal();
         produceResources(resourcesFound);
         return "You found " + resourcesFound + " resources.";
     }

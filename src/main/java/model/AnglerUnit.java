@@ -22,10 +22,9 @@ public class AnglerUnit extends Unit implements Convertable {
 
     @Override
     public boolean canConvert(TileType type) {
-        if(type == TileType.WATER) {
+        if (type == TileType.WATER) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 }

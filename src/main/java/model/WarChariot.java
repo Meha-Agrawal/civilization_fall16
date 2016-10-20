@@ -3,6 +3,7 @@ public class WarChariot extends RangedUnit {
 
     public WarChariot(Civilization owner) {
         super(owner);
+        setBaseEndurance(20);
     }
 
     @Override

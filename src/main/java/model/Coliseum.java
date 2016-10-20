@@ -5,6 +5,10 @@ public class Coliseum extends Landmark {
         super(owner);
     }
 
+    public String toString() {
+        return "Coliseum. " + super.toString();
+    }
+
     @Override
     public void invest() {
         super.invest();

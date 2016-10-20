@@ -12,6 +12,6 @@ public class GreatWall extends Landmark {
 
     public void invest() {
         super.invest();
-        getOwner().getStrategy();
+        getOwner().getStrategy().battle();
     }
 }

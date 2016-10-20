@@ -23,7 +23,7 @@ public class Civilization {
         this.name = name;
     }
 
-    public Hills getHills(){
+    public Hills getHills() {
         return hills;
     }
 

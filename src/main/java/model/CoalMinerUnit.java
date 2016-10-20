@@ -22,10 +22,9 @@ public class CoalMinerUnit extends Unit implements Convertable {
 
     @Override
     public boolean canConvert(TileType type) {
-        if(type == TileType.HILLS) {
+        if (type == TileType.HILLS) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 }

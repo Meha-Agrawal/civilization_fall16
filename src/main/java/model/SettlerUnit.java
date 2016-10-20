@@ -19,6 +19,7 @@ public class SettlerUnit extends Unit implements Convertable {
 
     @Override
     public Building convert() {
+        getOwner().incrementNumSettlements();
         return getOwner().getSettlement(townName);
     }
 

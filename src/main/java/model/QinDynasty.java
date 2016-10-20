@@ -1,16 +1,22 @@
 package model;
 
-import java.util.Random;
+
 
 class QinDynasty extends Civilization{
+    private Hills hills = new Hills();
+
     public QinDynasty() {
-        super("Qin");
+        super("Qin Dynasty");
+    }
+
+    public Hills getHills() {
+        return hills;
     }
 
     @Override
     public String explore() {
-        if (!(getHills().replenishGame())) {
-            int foodFound = getHills().hunt().getHealth();
+        if (!(hills.replenishGame())) {
+            int foodFound = hills.hunt().getHealth();
             makeFood(foodFound);
             return "You found " + foodFound + " food.";
         } else {

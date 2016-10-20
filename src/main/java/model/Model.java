@@ -222,7 +222,14 @@ public class Model {
 
     public static boolean attackSelected(int r, int c) {
         // TODO: Make this actually work :D
-        return false;
+         if ((map).isEmpty(r, c)) {
+             returne false;
+         } else if (((map.getTile(r, c)).getOccupant().getOwner() != playerCivilization) && !(map[r][c]).isDestroyed()) {
+             (map[r][c]).damage(((MilitaryUnit) selected).getDamage());
+         }
+         if ((map[r][c]).isDestroyed()) {
+             map[r][c] = null;
+         }
     }
 
     public static boolean convertSelected() {
