@@ -222,11 +222,14 @@ public class Model {
 
     public static boolean attackSelected(int r, int c) {
         if ((map).isEmpty(r, c)) {
+            System.out.println("tis empty");
             return false;
+
         } else if (((map.getTile(r, c)).getOccupant().getOwner()
             != playerCivilization)
-            && (((MilitaryUnit)(selected).getOccupant()).getCanAttack())) {
-            ((MilitaryUnit)(selected).getOccupant()).attack(map.getTile(r, c).getOccupant());
+            && (((MilitaryUnit) (selected).getOccupant()).getCanAttack())) {
+            ((MilitaryUnit)
+            (selected).getOccupant()).attack(map.getTile(r, c).getOccupant());
             if (map.getTile(r, c).getOccupant().isDestroyed()) {
                 map.getTile(r, c).setOccupant(null);
             }
