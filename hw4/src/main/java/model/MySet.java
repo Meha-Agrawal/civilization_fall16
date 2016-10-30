@@ -1,8 +1,12 @@
 package model;
 import java.util.Random;
 public class MySet<E> implements SimpleSet<E> {
-    private E[] backingArray = (E[]) (new Object[0]);
-    private int size = 0;
+    private E[] backingArray;
+    private int size;
+    public MySet() {
+        backingArray = (E[]) (new Object[0]);
+        size = 0;
+    }
 
     /**
      * Adds the passed in element to the set.
@@ -11,7 +15,7 @@ public class MySet<E> implements SimpleSet<E> {
     @Override
     public boolean add(E e) {
         if (!contains(e)) {
-            E[] tempBackingArray = (E[]) (new Object[backingArray.length]);
+            E[] tempBackingArray = (E[]) (new Object[backingArray.length + 1]);
             for (int i = 0; i < backingArray.length; i++) {
                 tempBackingArray[i] = backingArray[i];
             }
