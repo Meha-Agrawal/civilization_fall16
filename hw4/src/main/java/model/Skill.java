@@ -44,7 +44,7 @@ enum Skill {
 
     @Override
     public String toString() {
-        return this.value;
+        return (this.value);
     }
 
     private static Random rand = new Random();

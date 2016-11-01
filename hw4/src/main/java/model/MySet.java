@@ -4,7 +4,7 @@ public class MySet<E> implements SimpleSet<E> {
     private E[] backingArray;
     private int size;
     public MySet() {
-        backingArray = (E[]) (new Object[0]);
+        backingArray = (E[]) (new Object[1]);
         size = 0;
     }
 
@@ -15,12 +15,15 @@ public class MySet<E> implements SimpleSet<E> {
     @Override
     public boolean add(E e) {
         if (!contains(e)) {
-            E[] tempBackingArray = (E[]) (new Object[backingArray.length + 1]);
-            for (int i = 0; i < backingArray.length; i++) {
-                tempBackingArray[i] = backingArray[i];
+            if (backingArray.length == size) {
+                E[] tempBackingArray = (E[])
+                    (new Object[backingArray.length * 2]);
+                for (int i = 0; i < backingArray.length; i++) {
+                    tempBackingArray[i] = backingArray[i];
+                }
+                backingArray = tempBackingArray;
             }
-            backingArray = tempBackingArray;
-            backingArray[backingArray.length - 1] = e;
+            backingArray[size] = e;
             size++;
             return true;
         } else {
@@ -38,17 +41,35 @@ public class MySet<E> implements SimpleSet<E> {
     @Override
     public E remove(E e) throws ElementDoesNotExistException {
         if (contains(e)) {
-            for (int i = 0; i < backingArray.length; i++) {
-                if (backingArray[i].equals(e)) {
+            for (int i = 0; i < size; i++) {
+                if (backingArray[i] == null && e == null) {
                     backingArray[i] = null;
+                    for (int j = i; j < (size - 1); j++) {
+                        backingArray[j] = backingArray[j + 1];
+                    }
+                    if (backingArray.length == size) {
+                        backingArray[size - 1] = null;
+                    }
                     size--;
+                    //return e;
+                } else if (backingArray[i] != null
+                    && backingArray[i].equals(e)) {
+                    backingArray[i] = null;
+                    for (int j = i; j < size - 1; j++) {
+                        backingArray[j] = backingArray[j + 1];
+                    }
+                    if (backingArray.length == size) {
+                        backingArray[size - 1] = null;
+                    }
+                    size--;
+                    //return e;
                 }
             }
-            return e;
         } else {
             throw new ElementDoesNotExistException("The element doesn't exist "
                 + " in backing array");
         }
+        return e;
     }
 
     /**
@@ -62,8 +83,10 @@ public class MySet<E> implements SimpleSet<E> {
      */
     @Override
     public boolean contains(E e) {
-        for (int i = 0; i < backingArray.length; i++) {
-            if (backingArray[i].equals(e)) {
+        for (int i = 0; i < size; i++) {
+            if (backingArray[i] == null && e == null) {
+                return true;
+            } else if (backingArray[i] != null && backingArray[i].equals(e)) {
                 return true;
             }
         }
@@ -84,13 +107,32 @@ public class MySet<E> implements SimpleSet<E> {
         int sizeSubtract = 0;
         E[] tempBackingArray = (E[]) (new Object[backingArray.length]);
 
-        for (int i = 0; i < backingArray.length; i++) {
+        for (int i = 0; i < size; i++) {
             tempBackingArray[i] = backingArray[i];
         }
         for (int j = 0; j < e.length; j++) {
-            for (int k = 0; k < backingArray.length; k++) {
-                if (e[j].equals(tempBackingArray[k])) {
+            for (int k = 0; k < size; k++) {
+                if (e[j] == null && tempBackingArray[k] == null) {
                     tempBackingArray[k] = null;
+                    for (int m = k; m < (size - 1); m++) {
+                        tempBackingArray[m] = tempBackingArray[m + 1];
+                    }
+                    int newSize = size - sizeSubtract;
+                    if (tempBackingArray.length == (newSize)) {
+                        tempBackingArray[size - 1] = null;
+                    }
+                    sizeSubtract++;
+                } else if (tempBackingArray[k] != null
+                    && e[j].equals(tempBackingArray[k])) {
+                    tempBackingArray[k] = null;
+                    sizeSubtract++;
+                    for (int m = k; m < size - 1; m++) {
+                        tempBackingArray[m] = tempBackingArray[m + 1];
+                    }
+                    int newSize = size - sizeSubtract;
+                    if (tempBackingArray.length == (newSize)) {
+                        tempBackingArray[size - 1] = null;
+                    }
                     sizeSubtract++;
                 } else {
                     throw new ElementDoesNotExistException("The element doesn't"
@@ -109,11 +151,9 @@ public class MySet<E> implements SimpleSet<E> {
     @Override
     public void clear() {
         for (int i = 0; i < backingArray.length; i++) {
-            if (!backingArray[i].equals(null)) {
-                backingArray[i] = null;
-                size--;
-            }
+            backingArray[i] = null;
         }
+        size = 0;
     }
 
     /**
@@ -165,11 +205,9 @@ public class MySet<E> implements SimpleSet<E> {
      */
     @Override
     public E[] toArray() {
-        E[] tempBackingArray = (E[]) (new Object[0]);
-        for (int i = 0; i < backingArray.length; i++) {
-            if (backingArray[i] != null) {
-                add(backingArray[i]);
-            }
+        E[] tempBackingArray = (E[]) (new Object[size]);
+        for (int i = 0; i < size; i++) {
+            tempBackingArray[i] = backingArray[i];
         }
         return tempBackingArray;
     }
@@ -182,11 +220,14 @@ public class MySet<E> implements SimpleSet<E> {
      */
     @Override
     public String toString() {
-        E[] tempBackingArray = toArray();
-        System.out.println("These are your elements: ");
+        //E[] tempBackingArray = this.toArray();
         String myString = "";
-        for (int i = 0; i < tempBackingArray.length; i++) {
-            myString = myString + tempBackingArray[i].toString();
+        for (int i = 0; i < size; i++) {
+            if (backingArray[i] == null) {
+                myString += "null ";
+            } else {
+                myString += backingArray[i].toString() + "  ";
+            }
         }
         return myString;
     }
