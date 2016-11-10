@@ -141,7 +141,7 @@ public class Model {
             for (Civilization c: civs) {
                 System.out.println(j + " " + c.getName() + ": "
                     + c.getStrategy().getStrategyLevel());
-                    j++;
+                j++;
             }
             break;
         case 2:
@@ -156,7 +156,7 @@ public class Model {
             for (Civilization c: civs) {
                 System.out.println(k + " " + c.getName() + ": "
                     + c.getHappiness());
-                    k++;
+                k++;
             }
             break;
         case 3:
@@ -172,7 +172,7 @@ public class Model {
             for (Civilization c: civs) {
                 System.out.println(m + " " + c.getName() + ": "
                     + c.getTechnology().getTechPoints());
-                    m++;
+                m++;
             }
             break;
         case 4:
@@ -187,7 +187,7 @@ public class Model {
             for (Civilization c: civs) {
                 System.out.println(n + " " + c.getName() + ": "
                     + c.getResources());
-                    n++;
+                n++;
             }
             break;
         case 5:
@@ -208,7 +208,7 @@ public class Model {
                         + "Settlements - " + c.getNumSettlements()
                         + " Military Level - "
                         + c.getStrategy().getStrategyLevel());
-                    o++;
+                o++;
             }
             break;
         default:

@@ -12,7 +12,8 @@ import java.util.NoSuchElementException;
 class MySet<E> implements SimpleSet<E>, Iterable<E> {
 
     private class MySetIterator implements Iterator<E> {
-        int cursor = 0;
+        private int cursor = 0;
+
         public boolean hasNext() {
             return cursor <= (data.length - 1);
         }

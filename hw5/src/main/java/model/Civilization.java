@@ -8,7 +8,7 @@ import java.util.Random;
  * @version 3.0
  * @author Taylor Hartman, Ryan Voor, Jim Harris
  */
-class Civilization implements Comparable<Civilization>{
+class Civilization implements Comparable<Civilization> {
     private static Random rand = new Random();
 
     private String name;
@@ -25,26 +25,31 @@ class Civilization implements Comparable<Civilization>{
 
     public int compareTo(Civilization other) {
         return (other.getStrategy().getStrategyLevel()
-        - this.strategy.getStrategyLevel());
+            - this.strategy.getStrategyLevel());
     }
 
     @Override
     public boolean equals(Object other) {
-        if (other == null) {return false;}
-        else if (this == other) {return true;}
-        else if(other instanceof Civilization) {
-            if (this.strategy.getStrategyLevel() == ((Civilization) other).getStrategy().getStrategyLevel()) {
+        if (other == null) {
+            return false;
+        } else if (this == other) {
+            return true;
+        } else if (other instanceof Civilization) {
+            if (this.strategy.getStrategyLevel()
+                == ((Civilization) other).getStrategy().getStrategyLevel()) {
                 return true;
             }
         }
         return false;
     }
 
-    // public int hashCode() {
-    //     int result = 17;
-    //     result = 31 + result + (Integer) this.strategy.getStrategyLevel().hashCode();
-    //     return result;
-    // }
+    public int hashCode() {
+        int result = 17;
+        Integer stratLevel = (Integer) this.strategy.getStrategyLevel();
+        result = 31 * result
+            + stratLevel.hashCode();
+        return result;
+    }
 
     /**
      * Public constructor.
