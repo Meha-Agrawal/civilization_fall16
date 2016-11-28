@@ -3,13 +3,14 @@ package view;
 import controller.GameController;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 
 /**
  * This class represents the GameScreen class
  */
 public class GameScreen extends BorderPane {
 
-
+    AbstractMenu myActionMenu;
     /**
      * Creates a new view into the game. this layout should include
      * the rescource bar, grid map, and action menus
@@ -17,6 +18,10 @@ public class GameScreen extends BorderPane {
      */
     public GameScreen() {
         //TODO
+        myActionMenu = new AbstractMenu();
+        this.setTop(getResources().getRootNode());
+        this.setCenter(GridFX.getInstance());
+        this.setLeft(myActionMenu.getRootNode());
     }
 
     /**
@@ -31,7 +36,7 @@ public class GameScreen extends BorderPane {
     */
     public static ResourcesMenu getResources() {
         //TODO
-        return null;
+        return new ResourcesMenu();
     }
 
 

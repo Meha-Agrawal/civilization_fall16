@@ -12,10 +12,12 @@ import model.Bandit;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.application.Application;
-import view.*;
+import view.GridFX;
+import model.Civilization;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Dialog;
+import java.util.Optional;
 
 /**
  * Created by Tian-Yo Yang on 11/11/2016.
@@ -36,8 +38,13 @@ public class CivilizationGame extends Application {
         civName.setTitle("A New Settlement");
         civName.setHeaderText("You have built a Settlement!");
         civName.setContentText("Enter the Name of your first Town: ");
-        myScreen.getStartButton().setOnAction(e -> {civName.showAndWait();
-        primaryStage.setScene(startGame());});
+        myScreen.getStartButton().setOnAction(e -> {
+            Optional<String> result = civName.showAndWait();
+            Civilization myCiv = new QinDynasty();
+            Bandit myBandit = new Bandit();
+            GridFX.getMap().putSettlement(result.toString(), myCiv, 1, 1);
+            GridFX.getMap().addEnemies(myBandit, 1);
+            primaryStage.setScene(startGame());});
     }
     /**
      * This is the main method that launches the javafx application
