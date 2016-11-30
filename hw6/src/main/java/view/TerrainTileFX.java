@@ -52,5 +52,24 @@ public class TerrainTileFX extends StackPane {
      */
     public void updateTileView() {
         //TODO
+        if (this.getChildren().contains(icon)) {
+            this.getChildren().remove(icon);
+        }
+        if (tile.isEmpty()) {
+            //System.out.println("Empty, transparent");
+            overlay.setFill(Color.rgb(0, 0, 0, 0.0));
+            //overlay = new Rectangle(70, 70, Color.rgb(0, 0, 0, 0.0));
+        } else if (!tile.isEmpty()) {
+            //System.out.println("Is not empty, color");
+            overlay.setFill(tile.getOccupant().getColor());
+            icon = new ImageView(tile.getOccupant().getImage());
+            this.getChildren().add(icon);
+            //overlay = new Rectangle(70, 70, tile.getOccupant().getColor());
+        }
+        if (GameController.getLastClicked() == this) {
+            //System.out.println("Inside tile hightlight");
+            overlay.setFill(Color.rgb(255, 255, 0, 0.5));
+        }
+
     }
 }

@@ -25,8 +25,8 @@ import javafx.scene.control.TextInputDialog;
  * 3. a Start button
  */
 public class StartScreen extends StackPane {
-
     private Button startBtn = new Button("START");
+    private ListView<CivEnum> civList;
     /**
     * constuctor of the start screen. Should set the background
     * image and display a list of civilizations and a start button
@@ -34,8 +34,13 @@ public class StartScreen extends StackPane {
     public StartScreen() {
         //TODO
         ImageView myBackground = new ImageView(new Image("File:./src/main/java/view/civ_background.png"));
-        this.getChildren().addAll(myBackground, startBtn, getCivList());
-
+        ObservableList<CivEnum> civs = FXCollections.observableArrayList (
+            CivEnum.ANCIENT_EGYPT, CivEnum.QIN_DYNASTY, CivEnum.ROMAN_EMPIRE);
+            civList = new ListView<CivEnum>(civs);
+            civList.setMaxWidth(200);
+            civList.setMaxHeight(200);
+            civList.setTranslateY(75);
+            this.getChildren().addAll(myBackground, startBtn, getCivList());
     }
     /**
     * gets the start button
@@ -53,12 +58,6 @@ public class StartScreen extends StackPane {
     */
     public ListView<CivEnum> getCivList() {
         //TODO
-        ObservableList<CivEnum> civs =FXCollections.observableArrayList (
-            CivEnum.ANCIENT_EGYPT, CivEnum.QIN_DYNASTY, CivEnum.ROMAN_EMPIRE);
-        ListView<CivEnum> civList = new ListView<CivEnum>(civs);
-        civList.setMaxWidth(200);
-        civList.setMaxHeight(200);
-        civList.setTranslateY(75);
         return civList;
     }
 }

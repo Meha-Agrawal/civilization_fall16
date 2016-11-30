@@ -23,28 +23,30 @@ import java.util.Optional;
  * Created by Tian-Yo Yang on 11/11/2016.
  */
 public class CivilizationGame extends Application {
-
+    private Civilization myCiv;
+    private Stage myStage;
+    private StartScreen myScreen;
     /**
      * this method is called upon running/launching the application
      * this method should display a scene on the stage
      */
     public void start(Stage primaryStage) {
         //TODO
-        StartScreen myScreen = new StartScreen();
-        primaryStage.setScene(new Scene(myScreen));
-        primaryStage.setTitle("Civilization.");
-        primaryStage.show();
+        myStage = primaryStage;
+        myScreen = new StartScreen();
+        myStage.setScene(new Scene(myScreen));
+        myStage.setTitle("Civilization.");
+        myStage.show();
         TextInputDialog civName = new TextInputDialog("Town Name");
         civName.setTitle("A New Settlement");
         civName.setHeaderText("You have built a Settlement!");
         civName.setContentText("Enter the Name of your first Town: ");
+
         myScreen.getStartButton().setOnAction(e -> {
-            Optional<String> result = civName.showAndWait();
-            Civilization myCiv = new QinDynasty();
-            Bandit myBandit = new Bandit();
-            GridFX.getMap().putSettlement(result.toString(), myCiv, 1, 1);
-            GridFX.getMap().addEnemies(myBandit, 1);
-            primaryStage.setScene(startGame());});
+            if (myScreen.getCivList().getSelectionModel().getSelectedItem() != null) {
+                startGame();
+            }
+        });
     }
     /**
      * This is the main method that launches the javafx application
@@ -62,7 +64,30 @@ public class CivilizationGame extends Application {
 
     public Scene startGame() {
         //TODO
+
+        String myChoice = myScreen.getCivList().getSelectionModel().getSelectedItem().toString();
+        if (myChoice.equals("Ancient Egypt")) {
+            myCiv = new Egypt();
+            GameController.setCivilization(myCiv);
+        } else if (myChoice.equals("Qin Dynasty")) {
+            myCiv = new QinDynasty();
+            GameController.setCivilization(myCiv);
+        } else if (myChoice.equals("Roman Empire")) {
+            myCiv = new RomanEmpire();
+            GameController.setCivilization(myCiv);
+        }
+        TextInputDialog civName = new TextInputDialog("Town Name");
+        civName.setTitle("A New Settlement");
+        civName.setHeaderText("You have built a Settlement!");
+        civName.setContentText("Enter the Name of your first Town: ");
+        Optional<String> result = civName.showAndWait();
+        Bandit myBandit = new Bandit();
+        //Scene myScene = new Scene(new GameScreen());
         Scene myScene = new Scene(new GameScreen());
+        GridFX.getMap().putSettlement(result.toString(), myCiv, 0, 9);
+        GridFX.getMap().addEnemies(myBandit, 1);
+        myStage.setScene(myScene);
+
         return myScene;
     }
 

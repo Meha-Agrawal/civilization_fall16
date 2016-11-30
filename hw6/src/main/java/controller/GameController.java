@@ -250,6 +250,7 @@ public class GameController {
      * Updates the resource bar
      */
     public static void updateResourcesBar() {
+        System.out.println(GameScreen.getResources());
         GameScreen.getResources().update();
     }
 
@@ -339,5 +340,3 @@ public class GameController {
 
     }
 }
-
-

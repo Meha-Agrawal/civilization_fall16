@@ -86,6 +86,7 @@ public class TerrainTile implements Symbolizable, Viewable {
      * @return whether or not this tile is empty (has no occupant).
      */
     public boolean isEmpty() {
+        //System.out.println("reached isEmpty()");
         return occupant == null;
     }
 
