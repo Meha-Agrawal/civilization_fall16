@@ -22,12 +22,13 @@ public class MilitaryMenu extends AbstractMenu {
         attackButton.setOnAction(e -> {
                 GameController.attacking();
                 GameController.updateResourcesBar();
+                GameScreen.getMyGameScreen().update();
             });
         moveButton.setOnAction(e ->
             {
                 GameController.moving();
+                GameController.updateResourcesBar();
                 GameScreen.getMyGameScreen().update();
-                GameController.setLastClicked(GameController.getLastClicked());
             }
         );
 

@@ -15,7 +15,7 @@ public class GameScreen extends BorderPane {
     private static BuildingMenu myBuildingMenu;
     private static StatusMenu myStatusMenu;
     private static GameScreen myGameScreen;
-    private static AbstractMenu currentMenu = null;
+    private static AbstractMenu currentMenu = new AbstractMenu();
     private static ResourcesMenu myResourceMenu;
     /**
      * Creates a new view into the game. this layout should include

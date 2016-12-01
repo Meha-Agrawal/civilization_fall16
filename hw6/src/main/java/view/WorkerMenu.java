@@ -25,7 +25,6 @@ public class WorkerMenu extends AbstractMenu {
         moveButton.setOnAction(e -> {
                 GameController.moving();
                 GameScreen.getMyGameScreen().update();
-                GameController.setLastClicked(GameController.getLastClicked());
             });
         convertButton.setOnAction(e -> {
                 TerrainTileFX myTTileFX = GameController.getLastClicked();
@@ -36,6 +35,7 @@ public class WorkerMenu extends AbstractMenu {
                         .convert());
                     myTTileFX.updateTileView();
                     GameController.updateResourcesBar();
+                    GameScreen.getMyGameScreen().update();
                 } else {
                     Alert alert = new Alert(AlertType.INFORMATION);
                     alert.setTitle("Alert!");

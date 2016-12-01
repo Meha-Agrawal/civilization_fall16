@@ -40,6 +40,8 @@ public class RecruitMenu extends AbstractMenu {
                         GameController.getLastClicked().getTile().
                             setOccupant(GameController.getCivilization().
                                 getMeleeUnit());
+                        ((Unit) GameController.getCivilization().getMeleeUnit())
+                            .applyInitialCosts();
                     } else {
                         Alert alert = new Alert(AlertType.INFORMATION);
                         alert.setTitle("You cannot make a Melee Unit!");
@@ -52,6 +54,8 @@ public class RecruitMenu extends AbstractMenu {
                         GameController.getLastClicked().getTile().
                             setOccupant(GameController.getCivilization().
                                 getRangedUnit());
+                        ((Unit) GameController.getCivilization().
+                            getRangedUnit()).applyInitialCosts();
                     } else {
                         Alert alert = new Alert(AlertType.INFORMATION);
                         alert.setTitle("You cannot make a Ranged Unit!");
@@ -64,6 +68,8 @@ public class RecruitMenu extends AbstractMenu {
                         GameController.getLastClicked().getTile().
                             setOccupant(GameController.
                                 getCivilization().getHybridUnit());
+                        ((Unit) GameController.getCivilization().
+                            getHybridUnit()).applyInitialCosts();
                     }  else {
                         Alert alert = new Alert(AlertType.INFORMATION);
                         alert.setTitle("You cannot make a Hybrid Unit!");
@@ -76,6 +82,8 @@ public class RecruitMenu extends AbstractMenu {
                         GameController.getLastClicked().getTile().
                             setOccupant(GameController.getCivilization().
                                 getSiegeUnit());
+                        ((Unit) GameController.getCivilization().
+                            getSiegeUnit()).applyInitialCosts();
                     }  else {
                         Alert alert = new Alert(AlertType.INFORMATION);
                         alert.setTitle("You cannot make a Siege Unit!");
@@ -90,6 +98,9 @@ public class RecruitMenu extends AbstractMenu {
                             setOccupant(GameController.getCivilization().
                                 getSettlerUnit(GameController.getCivilization().
                                     getName()));
+                        GameController.getCivilization().
+                            getSettlerUnit(GameController.getCivilization().
+                            getName()).applyInitialCosts();
                     } else {
                         Alert alert = new Alert(AlertType.INFORMATION);
                         alert.setTitle("You cannot make a Settler Unit!");
@@ -102,6 +113,8 @@ public class RecruitMenu extends AbstractMenu {
                         GameController.getLastClicked().getTile().
                             setOccupant(GameController.getCivilization().
                                 getFarmerUnit());
+                        GameController.getCivilization().getFarmerUnit().
+                            applyInitialCosts();
                     }  else {
                         Alert alert = new Alert(AlertType.INFORMATION);
                         alert.setTitle("You cannot make a Farmer Unit!");
@@ -114,6 +127,8 @@ public class RecruitMenu extends AbstractMenu {
                         GameController.getLastClicked().getTile().
                             setOccupant(GameController.getCivilization().
                                 getCoalMinerUnit());
+                        ((Unit) GameController.getCivilization().
+                                    getCoalMinerUnit()).applyInitialCosts();
                     }  else {
                         Alert alert = new Alert(AlertType.INFORMATION);
                         alert.setTitle("You cannot make a Coal Miner Unit!");
@@ -127,6 +142,8 @@ public class RecruitMenu extends AbstractMenu {
                         GameController.getLastClicked().getTile().
                             setOccupant(GameController.getCivilization().
                                 getAnglerUnit());
+                        GameController.getCivilization().getAnglerUnit()
+                                    .applyInitialCosts();
                     }  else {
                         Alert alert = new Alert(AlertType.INFORMATION);
                         alert.setTitle("You cannot make a Angler Unit!");
@@ -139,6 +156,8 @@ public class RecruitMenu extends AbstractMenu {
                         GameController.getLastClicked().getTile().
                             setOccupant(GameController.getCivilization().
                                 getMasterBuilderUnit());
+                        GameController.getCivilization().getMasterBuilderUnit()
+                            .applyInitialCosts();
                     } else {
                         Alert alert = new Alert(AlertType.INFORMATION);
                         alert.setTitle("You cannot make a Master Unit!");

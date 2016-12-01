@@ -36,6 +36,7 @@ public class ResourcesMenu {
         label1.setText("Strat Level: " + myCiv.getStrategy().
             getStrategyLevel());
         label2.setText("Resources: " + myCiv.getResources());
+        //System.out.println(myCiv.getNumSettlements());
         label3.setText("Settlements: " + myCiv.getNumSettlements());
         label4.setText("Money: " + myCiv.getTreasury().getCoins());
         label5.setText("Food: " + myCiv.getFood());

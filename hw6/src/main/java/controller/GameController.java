@@ -56,7 +56,6 @@ public class GameController {
         } else if (state == GameState.MOVING) {
             if (move(last)) {
                 lastClicked = last;
-            }
         }
         //update lastClicked
         lastClicked = last;
@@ -114,9 +113,11 @@ public class GameController {
      * @return true or false whether the move was successful
      */
     private static boolean move(TerrainTileFX newTile) {
-        boolean result = move(lastClicked.getTile(), newTile.getTile());
         newTile.updateTileView();
+        boolean result = move(lastClicked.getTile(), newTile.getTile());
+        //newTile.updateTileView();
         lastClicked.updateTileView();
+
         if (!result) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("You cannot move!");

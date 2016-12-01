@@ -22,6 +22,7 @@ public class CivilizationGame extends Application {
     private Civilization myCiv;
     private Stage myStage;
     private StartScreen myScreen;
+    private Bandit myBandit;
     //private GameScreen myGS;
     /**
      * this method is called upon running/launching the application
@@ -39,12 +40,17 @@ public class CivilizationGame extends Application {
         civName.setHeaderText("You have built a Settlement!");
         civName.setContentText("Enter the Name of your first Town: ");
 
+        //myGS = new GameScreen();
+
         myScreen.getStartButton().setOnAction(e -> {
                 if (myScreen.getCivList().getSelectionModel()
                     .getSelectedItem() != null) {
                     startGame();
                 }
             });
+
+            //GameScreen.getMyGameScreen().update();
+
     }
     /**
      * This is the main method that launches the javafx application
@@ -80,13 +86,13 @@ public class CivilizationGame extends Application {
         civName.setHeaderText("You have built a Settlement!");
         civName.setContentText("Enter the Name of your first Town: ");
         Optional<String> result = civName.showAndWait();
-        Bandit myBandit = new Bandit();
+        myBandit = new Bandit();
         //myGS = new GameScreen();
         Scene myScene = new Scene(new GameScreen());
         GridFX.getMap().putSettlement(result.toString(), myCiv, 0, 9);
         GridFX.getMap().addEnemies(myBandit, 1);
         myStage.setScene(myScene);
-        //GameScreen.getMyGameScreen().update();
+        GameScreen.getMyGameScreen().update();
         return myScene;
     }
 

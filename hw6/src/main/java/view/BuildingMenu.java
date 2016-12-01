@@ -43,14 +43,13 @@ public class BuildingMenu extends AbstractMenu {
                         .getOccupant()).demolish();
                     GameController.getLastClicked().getTile().setOccupant(null);
                     GameController.updateResourcesBar();
-                    if (GameController.getCivilization()
+                } else if (GameController.getCivilization()
                         .getNumSettlements() > 1) {
-                        ((Building) GameController.getLastClicked()
+                    ((Building) GameController.getLastClicked()
                             .getTile().getOccupant()).demolish();
-                        GameController.getLastClicked().getTile()
+                    GameController.getLastClicked().getTile()
                             .setOccupant(null);
-                        GameController.updateResourcesBar();
-                    }
+                    GameController.updateResourcesBar();
                 } else {
                     Alert alert = new Alert(AlertType.INFORMATION);
                     alert.setTitle("You cannot demolish!");
