@@ -2,9 +2,7 @@ package runner;
 
 import controller.GameController;
 import view.StartScreen;
-import view.CivEnum;
 import view.GameScreen;
-import model.Map;
 import model.QinDynasty;
 import model.RomanEmpire;
 import model.Egypt;
@@ -14,9 +12,7 @@ import javafx.stage.Stage;
 import javafx.application.Application;
 import view.GridFX;
 import model.Civilization;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextInputDialog;
-import javafx.scene.control.Dialog;
 import java.util.Optional;
 
 /**
@@ -44,10 +40,11 @@ public class CivilizationGame extends Application {
         civName.setContentText("Enter the Name of your first Town: ");
 
         myScreen.getStartButton().setOnAction(e -> {
-            if (myScreen.getCivList().getSelectionModel().getSelectedItem() != null) {
-                startGame();
-            }
-        });
+                if (myScreen.getCivList().getSelectionModel()
+                    .getSelectedItem() != null) {
+                    startGame();
+                }
+            });
     }
     /**
      * This is the main method that launches the javafx application
@@ -66,7 +63,8 @@ public class CivilizationGame extends Application {
     public Scene startGame() {
         //TODO
 
-        String myChoice = myScreen.getCivList().getSelectionModel().getSelectedItem().toString();
+        String myChoice = myScreen.getCivList().getSelectionModel()
+            .getSelectedItem().toString();
         if (myChoice.equals("Ancient Egypt")) {
             myCiv = new Egypt();
             GameController.setCivilization(myCiv);

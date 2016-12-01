@@ -117,7 +117,7 @@ public class GameController {
         boolean result = move(lastClicked.getTile(), newTile.getTile());
         newTile.updateTileView();
         lastClicked.updateTileView();
-        if (result == false) {
+        if (!result) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("You cannot move!");
             alert.setContentText("You cannot move!");

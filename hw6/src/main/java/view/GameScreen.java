@@ -1,9 +1,7 @@
 package view;
 
 import controller.GameController;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 
 /**
  * This class represents the GameScreen class
@@ -43,9 +41,9 @@ public class GameScreen extends BorderPane {
      */
     public void update() {
       //TODO
-      this.setLeft(currentMenu.getRootNode());
-      GridFX.update();
-      getResources().update();
+        this.setLeft(currentMenu.getRootNode());
+        GridFX.update();
+        getResources().update();
 
     }
     /**
@@ -68,19 +66,19 @@ public class GameScreen extends BorderPane {
      * @param state
      */
     public static void switchMenu(GameController.GameState state) {
-       //TODO
-       if (state == GameController.GameState.MILITARY) {
-           currentMenu = myMilitaryMenu;
-       } else if (state == GameController.GameState.WORKER) {
-           currentMenu = myWorkerMenu;
-       } else if (state == GameController.GameState.RECRUITING) {
-           currentMenu = myRecruitMenu;
-       } else if (state == GameController.GameState.BUILDING) {
-           currentMenu = myBuildingMenu;
-       } else if (state == GameController.GameState.NEUTRAL) {
-           currentMenu = myStatusMenu;
-       }
-       //myGameScreen.update();
-       GameScreen.getMyGameScreen().update();
+        //TODO
+        if (state == GameController.GameState.MILITARY) {
+            currentMenu = myMilitaryMenu;
+        } else if (state == GameController.GameState.WORKER) {
+            currentMenu = myWorkerMenu;
+        } else if (state == GameController.GameState.RECRUITING) {
+            currentMenu = myRecruitMenu;
+        } else if (state == GameController.GameState.BUILDING) {
+            currentMenu = myBuildingMenu;
+        } else if (state == GameController.GameState.NEUTRAL) {
+            currentMenu = myStatusMenu;
+        }
+        //myGameScreen.update();
+        GameScreen.getMyGameScreen().update();
     }
 }

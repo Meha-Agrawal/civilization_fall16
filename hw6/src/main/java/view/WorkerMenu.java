@@ -3,7 +3,6 @@ package view;
 import controller.GameController;
 import model.Convertable;
 import model.MapObject;
-import model.TerrainTile;
 import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -29,21 +28,23 @@ public class WorkerMenu extends AbstractMenu {
                 GameController.setLastClicked(GameController.getLastClicked());
             });
         convertButton.setOnAction(e -> {
-            TerrainTileFX myTTileFX = GameController.getLastClicked();
-            MapObject myMapObject = myTTileFX.getTile().getOccupant();
-            if(myMapObject.isWorker() && ((Convertable) myMapObject).canConvert(myTTileFX.getTile().getType())) {
-                myTTileFX.getTile().setOccupant(((Convertable) myMapObject).convert());
-                myTTileFX.updateTileView();
-                GameController.updateResourcesBar();
-            } else {
-                Alert alert = new Alert(AlertType.INFORMATION);
-                alert.setTitle("Alert!");
-                alert.setContentText("You cannot convert this tile!");
-                alert.showAndWait();
-            }
-            GameScreen.getMyGameScreen().update();
-            GameController.setLastClicked(GameController.getLastClicked());
-        });
+                TerrainTileFX myTTileFX = GameController.getLastClicked();
+                MapObject myMapObject = myTTileFX.getTile().getOccupant();
+                if (myMapObject.isWorker() && ((Convertable) myMapObject)
+                    .canConvert(myTTileFX.getTile().getType())) {
+                    myTTileFX.getTile().setOccupant(((Convertable) myMapObject)
+                        .convert());
+                    myTTileFX.updateTileView();
+                    GameController.updateResourcesBar();
+                } else {
+                    Alert alert = new Alert(AlertType.INFORMATION);
+                    alert.setTitle("Alert!");
+                    alert.setContentText("You cannot convert this tile!");
+                    alert.showAndWait();
+                }
+                GameScreen.getMyGameScreen().update();
+                GameController.setLastClicked(GameController.getLastClicked());
+            });
 
     }
 }

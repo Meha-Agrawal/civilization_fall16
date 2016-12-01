@@ -1,18 +1,12 @@
 package view;
 
-import model.Civilization;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.control.ListView;
-import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
-import javafx.scene.control.Label;
-import javafx.scene.layout.Background;
 import javafx.scene.image.Image;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
-import javafx.scene.control.TextInputDialog;
 
 /**
  * Created by Tian-Yo Yang on 11/11/2016.
@@ -33,14 +27,15 @@ public class StartScreen extends StackPane {
     */
     public StartScreen() {
         //TODO
-        ImageView myBackground = new ImageView(new Image("File:./src/main/java/view/civ_background.png"));
-        ObservableList<CivEnum> civs = FXCollections.observableArrayList (
+        ImageView myBackground = new ImageView(new Image(
+            "File:./src/main/java/view/civ_background.png"));
+        ObservableList<CivEnum> civs = FXCollections.observableArrayList(
             CivEnum.ANCIENT_EGYPT, CivEnum.QIN_DYNASTY, CivEnum.ROMAN_EMPIRE);
-            civList = new ListView<CivEnum>(civs);
-            civList.setMaxWidth(200);
-            civList.setMaxHeight(200);
-            civList.setTranslateY(75);
-            this.getChildren().addAll(myBackground, startBtn, getCivList());
+        civList = new ListView<CivEnum>(civs);
+        civList.setMaxWidth(200);
+        civList.setMaxHeight(200);
+        civList.setTranslateY(75);
+        this.getChildren().addAll(myBackground, startBtn, getCivList());
     }
     /**
     * gets the start button

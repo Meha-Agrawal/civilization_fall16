@@ -6,7 +6,6 @@ public class StatusMenu extends AbstractMenu {
      * other unit information
      */
     public StatusMenu() {
-    	//TODO
         super();
     }
 }

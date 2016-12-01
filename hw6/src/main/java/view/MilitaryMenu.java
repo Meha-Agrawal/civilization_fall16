@@ -20,8 +20,8 @@ public class MilitaryMenu extends AbstractMenu {
         super.addMenuItem(moveButton);
 
         attackButton.setOnAction(e -> {
-            GameController.attacking();
-            GameController.updateResourcesBar();
+                GameController.attacking();
+                GameController.updateResourcesBar();
             });
         moveButton.setOnAction(e ->
             {
