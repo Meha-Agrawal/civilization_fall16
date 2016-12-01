@@ -68,7 +68,9 @@ public class TerrainTileFX extends StackPane {
         }
         if (GameController.getLastClicked() == this) {
             //System.out.println("Inside tile hightlight");
-            overlay.setFill(Color.rgb(255, 255, 0, 0.5));
+            overlay.setStroke(Color.rgb(255, 255, 0, 1));
+        } else {
+            overlay.setStroke(Color.BLACK);
         }
 
     }

@@ -26,6 +26,7 @@ public class CivilizationGame extends Application {
     private Civilization myCiv;
     private Stage myStage;
     private StartScreen myScreen;
+    //private GameScreen myGS;
     /**
      * this method is called upon running/launching the application
      * this method should display a scene on the stage
@@ -82,12 +83,12 @@ public class CivilizationGame extends Application {
         civName.setContentText("Enter the Name of your first Town: ");
         Optional<String> result = civName.showAndWait();
         Bandit myBandit = new Bandit();
-        //Scene myScene = new Scene(new GameScreen());
+        //myGS = new GameScreen();
         Scene myScene = new Scene(new GameScreen());
         GridFX.getMap().putSettlement(result.toString(), myCiv, 0, 9);
         GridFX.getMap().addEnemies(myBandit, 1);
         myStage.setScene(myScene);
-
+        //GameScreen.getMyGameScreen().update();
         return myScene;
     }
 

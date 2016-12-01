@@ -4,6 +4,8 @@ import controller.GameController;
 import model.Building;
 import model.Settlement;
 import javafx.scene.control.Button;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 /**
  * This class should represents the bulding menu
@@ -19,9 +21,38 @@ public class BuildingMenu extends AbstractMenu {
         //TODO
         super.addMenuItem(investButton);
         super.addMenuItem(demolishButton);
-        System.out.println("BuildingMenu Constructor");
         investButton.setOnAction(e -> {
-            ((Building) (GameController.getLastClicked().getTile().getOccupant())).invest();
+            if (GameController.getCivilization().getTreasury().getCoins() >= 25) {
+                ((Building) (GameController.getLastClicked().getTile().getOccupant())).invest();
+                GameController.getCivilization().getTreasury().spend(25);
+                GameController.updateResourcesBar();
+            } else {
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("You cannot invest!");
+                alert.setContentText("You cannot invest!");
+                alert.showAndWait();
+            }
+            GameScreen.getMyGameScreen().update();
+            GameController.setLastClicked(GameController.getLastClicked());
+        });
+        demolishButton.setOnAction(e -> {
+            if (!(((Building) GameController.getLastClicked().getTile().getOccupant()).isSettlement())) {
+                ((Building) GameController.getLastClicked().getTile().getOccupant()).demolish();
+                GameController.getLastClicked().getTile().setOccupant(null);
+                GameController.updateResourcesBar();
+                if (GameController.getCivilization().getNumSettlements() > 1) {
+                    ((Building) GameController.getLastClicked().getTile().getOccupant()).demolish();
+                    GameController.getLastClicked().getTile().setOccupant(null);
+                    GameController.updateResourcesBar();
+                }
+            } else {
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("You cannot demolish!");
+                alert.setContentText("You cannot demolish!");
+                alert.showAndWait();
+            }
+            GameScreen.getMyGameScreen().update();
+            GameController.setLastClicked(GameController.getLastClicked());
         });
     }
 }

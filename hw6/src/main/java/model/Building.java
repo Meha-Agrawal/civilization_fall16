@@ -176,6 +176,9 @@ public abstract class Building extends MapObject {
         this.happinessGeneration = generation;
     }
 
+    public boolean isSettlement() {
+        return (this instanceof Settlement);
+    }
 
     @Override
     public String toString() {

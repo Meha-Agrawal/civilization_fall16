@@ -14,6 +14,8 @@ import model.Unit;
 import view.GameScreen;
 import view.GridFX;
 import view.TerrainTileFX;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 /**
  * Created by RuYiMarone on 11/11/2016.
@@ -115,6 +117,12 @@ public class GameController {
         boolean result = move(lastClicked.getTile(), newTile.getTile());
         newTile.updateTileView();
         lastClicked.updateTileView();
+        if (result == false) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("You cannot move!");
+            alert.setContentText("You cannot move!");
+            alert.showAndWait();
+        }
         return result;
     }
 
@@ -161,6 +169,10 @@ public class GameController {
             || !((MilitaryUnit) attacker.getOccupant()).getCanAttack()
             || !GridFX.adjacent(attacker, enemy)) {
             state = GameState.NEUTRAL;
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("You cannot attack!");
+            alert.setContentText("You cannot attack!");
+            alert.showAndWait();
             return;
         }
 
@@ -250,7 +262,6 @@ public class GameController {
      * Updates the resource bar
      */
     public static void updateResourcesBar() {
-        System.out.println(GameScreen.getResources());
         GameScreen.getResources().update();
     }
 

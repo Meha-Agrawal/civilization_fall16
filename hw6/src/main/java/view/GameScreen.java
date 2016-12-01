@@ -70,21 +70,17 @@ public class GameScreen extends BorderPane {
     public static void switchMenu(GameController.GameState state) {
        //TODO
        if (state == GameController.GameState.MILITARY) {
-           System.out.println("military menu");
            currentMenu = myMilitaryMenu;
        } else if (state == GameController.GameState.WORKER) {
-           System.out.println("worker menu");
            currentMenu = myWorkerMenu;
        } else if (state == GameController.GameState.RECRUITING) {
-           System.out.println("recruiting menu");
            currentMenu = myRecruitMenu;
        } else if (state == GameController.GameState.BUILDING) {
-           System.out.println("building menu");
            currentMenu = myBuildingMenu;
        } else if (state == GameController.GameState.NEUTRAL) {
-           System.out.println("status menu");
            currentMenu = myStatusMenu;
        }
-       myGameScreen.update();
+       //myGameScreen.update();
+       GameScreen.getMyGameScreen().update();
     }
 }

@@ -23,19 +23,26 @@ public class WorkerMenu extends AbstractMenu {
         super.addMenuItem(moveButton);
         super.addMenuItem(convertButton);
 
-        moveButton.setOnAction(e -> GameController.moving());
-        convertButton.setOnAction(e -> {
-            if(GameController.getLastClicked().getTile().getOccupant().isWorker()) {
-                GameController.getLastClicked().getTile().setOccupant(((Convertable) GameController.getLastClicked().getTile().getOccupant()).convert());
+        moveButton.setOnAction(e -> {
+                GameController.moving();
                 GameScreen.getMyGameScreen().update();
+                GameController.setLastClicked(GameController.getLastClicked());
+            });
+        convertButton.setOnAction(e -> {
+            TerrainTileFX myTTileFX = GameController.getLastClicked();
+            MapObject myMapObject = myTTileFX.getTile().getOccupant();
+            if(myMapObject.isWorker() && ((Convertable) myMapObject).canConvert(myTTileFX.getTile().getType())) {
+                myTTileFX.getTile().setOccupant(((Convertable) myMapObject).convert());
+                myTTileFX.updateTileView();
+                GameController.updateResourcesBar();
             } else {
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Alert!");
-                alert.setHeaderText(null);
                 alert.setContentText("You cannot convert this tile!");
                 alert.showAndWait();
             }
-            GameController.updateResourcesBar();
+            GameScreen.getMyGameScreen().update();
+            GameController.setLastClicked(GameController.getLastClicked());
         });
 
     }

@@ -23,7 +23,13 @@ public class MilitaryMenu extends AbstractMenu {
             GameController.attacking();
             GameController.updateResourcesBar();
             });
-        moveButton.setOnAction(e -> GameController.moving());
+        moveButton.setOnAction(e ->
+            {
+                GameController.moving();
+                GameScreen.getMyGameScreen().update();
+                GameController.setLastClicked(GameController.getLastClicked());
+            }
+        );
 
     }
 }
