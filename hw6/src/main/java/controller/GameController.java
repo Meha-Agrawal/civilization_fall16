@@ -56,6 +56,7 @@ public class GameController {
         } else if (state == GameState.MOVING) {
             if (move(last)) {
                 lastClicked = last;
+            }
         }
         //update lastClicked
         lastClicked = last;
@@ -94,16 +95,17 @@ public class GameController {
     }
 
     /**
-     * Sets game state to ATTACKING (used as a transition state)
-     */
-    public static void attacking() {
-        state = GameState.ATTACKING;
-    }
-    /**
      * Sets game state to MOVING (used as a transition state)
      */
     public static void moving() {
         state = GameState.MOVING;
+    }
+
+    /**
+     * Sets game state to ATTACKING (used as a transition state)
+     */
+    public static void attacking() {
+        state = GameState.ATTACKING;
     }
 
     /**
